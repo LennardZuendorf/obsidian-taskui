@@ -1,8 +1,8 @@
-name: Lint, Format and Build
+name: Lint, Format, Test and Build
 
 on:
     push:
-    
+
     pull_request:
 
     workflow_dispatch:
@@ -35,6 +35,9 @@ jobs:
 
             - name: Run Biome Check
               run: pnpm run check
+
+            - name: Run Tests
+              run: pnpm run test
 
             - name: Build with Vite
               run: pnpm run build
