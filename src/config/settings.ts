@@ -49,6 +49,25 @@ export class AppSettingsTab extends PluginSettingTab {
 						});
 					}),
 			);
+
+		// Default Task Format Setting
+		new Setting(containerEl)
+			.setName("Default Task Format")
+			.setDesc(
+				"Format used when writing newly created tasks. Existing tasks always keep their original format on edit.",
+			)
+			.addDropdown((dropdown) =>
+				dropdown
+					.addOption("dataview", "Dataview inline fields")
+					.addOption("emoji", "Obsidian Tasks emojis")
+					.setValue(settingsService.current.defaultTaskFormat ?? "dataview")
+					.onChange(async (value) => {
+						await settingsService.update((settings) => {
+							settings.defaultTaskFormat =
+								value === "emoji" ? "emoji" : "dataview";
+						});
+					}),
+			);
 	}
 }
 
