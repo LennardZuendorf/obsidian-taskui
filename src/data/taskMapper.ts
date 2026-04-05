@@ -498,7 +498,7 @@ export class TaskMapper {
 			? originalRawLine.substring(statusMarkerMatch[0].length)
 			: originalRawLine;
 
-		const attributeRegex = /\s*\[([a-zA-Z0-9_-]+)::\s*([^\\]]+?)\s*\]/g;
+		const attributeRegex = /\s*\[([a-zA-Z0-9_-]+)::\s*([^\]]+?)\s*\]/g;
 		const originalAttributes = new Map<string, string>();
 		let lineWithoutAttrsOrStatus = lineWithoutStatus;
 		let attrMatch;
