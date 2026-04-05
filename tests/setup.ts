@@ -6,6 +6,7 @@ import { settingsAtom } from "@/data/settingsAtom";
 // Silence pino and avoid reading process.env during module init.
 vi.mock("@/utils/logger", () => ({
 	logger: {
+		trace: vi.fn(),
 		debug: vi.fn(),
 		info: vi.fn(),
 		warn: vi.fn(),
