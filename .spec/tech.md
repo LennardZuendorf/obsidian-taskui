@@ -36,7 +36,7 @@ obsidian-taskui/
 │   └── utils/                # logger (pino), context, pluginCheck, errorUtils
 ├── tests/                    # Test suite (initial coverage)
 ├── dev-vault/                # Development Obsidian vault
-├── docs/                     # technical_architecture.md, tasks.md
+├── docs/                     # technical_architecture.md (redirects to .spec/)
 └── .spec/                    # Design docs (this directory)
 ```
 
@@ -116,4 +116,4 @@ designed. Current high-level map:
 | Polling-based fetch (every ~5s) can race local edits or scale poorly | Sync logic preserves `needsSync` local tasks over remote reads; v0.4 moves to event-based Dataview fetch. |
 | Write-back corrupting a markdown line | Merge fields onto the existing raw line and preserve unknown attributes rather than regenerating from scratch; validate before write. |
 | Sync failure loops | Bounded retry (`retryCount`), `syncFailed` flag after repeated failures, user notification. |
-| Spec/docs drift from code | `docs/technical_architecture.md` now redirects here (canonical); `docs/tasks.md` is the backlog/issue tracker. Keep `.spec/` + code as truth; re-validate after changes. |
+| Spec/docs drift from code | `docs/technical_architecture.md` now redirects here (canonical); backlog/issues live in GitHub Issues. Keep `.spec/` + code as truth; re-validate after changes. |

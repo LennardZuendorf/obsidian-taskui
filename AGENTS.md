@@ -120,7 +120,6 @@ pnpm check             # Biome lint + format
 /dev-vault/           # Development Obsidian vault
 /docs/                # Documentation
   technical_architecture.md
-  tasks.md
 ```
 
 ### Obsidian Plugin Integration

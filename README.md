@@ -154,8 +154,9 @@ Contributions are welcome but there's currently no framework, this is tbd.
 
 ## Roadmap
 
-See [`docs/tasks.md`](docs/tasks.md) for the backlog and known issues, and
-[`.spec/plan.md`](.spec/plan.md) for the current delivery focus.
+See [GitHub Issues](https://github.com/LennardZuendorf/obsidian-taskui/issues)
+for the backlog and known issues, and [`.spec/plan.md`](.spec/plan.md) for the
+current delivery focus.
 
 ## Support
 

@@ -31,6 +31,7 @@ the prior copy in this file had drifted from the implementation and was removed.
 
 ## Backlog & open issues
 
-Roadmap, bugs, and refactor backlog are tracked in [`tasks.md`](tasks.md) — the
+Roadmap, bugs, and refactor backlog are tracked in
+[GitHub Issues](https://github.com/LennardZuendorf/obsidian-taskui/issues) — the
 external tracker that complements `.spec/` (which stays current-only with no
 backlog).
