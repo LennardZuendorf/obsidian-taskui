@@ -12,7 +12,7 @@
 >**TaskUI is currently in Alpha (v0.3)**. This means:
 > - The plugin is functional but may have bugs or incomplete features, and breaking changes may occur between versions.
 > - Some features are still under active development
-> While interoperable with the Tasks Plugin, currently only the DataView mode is supported (which saves task details as *[[priority::high]]*, etc.).
+> TaskUI is interoperable with the Tasks Plugin and supports both task storage formats: DataView inline fields (e.g. *[priority:: high]*) and the Obsidian Tasks emoji syntax (e.g. *⏫*). It detects and preserves an existing task's format, and uses your configured default format (`dataview` or `emoji`) for new tasks.
 
 ## Overview
 
@@ -154,7 +154,9 @@ Contributions are welcome but there's currently no framework, this is tbd.
 
 ## Roadmap
 
-See 
+See [GitHub Issues](https://github.com/LennardZuendorf/obsidian-taskui/issues)
+for the backlog and known issues, and [`.spec/plan.md`](.spec/plan.md) for the
+current delivery focus.
 
 ## Support
 
