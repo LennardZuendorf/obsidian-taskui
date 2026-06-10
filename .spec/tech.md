@@ -34,7 +34,7 @@ obsidian-taskui/
 │   ├── config/               # Settings schema + Obsidian settings tab
 │   ├── ui/                   # React: base/ primitives, components/ (views, forms, table), lib/config
 │   └── utils/                # logger (pino), context, pluginCheck, errorUtils
-├── tests/                    # Test suite (initial coverage)
+├── tests/                    # Vitest suite (mapper, builder, dateUtils, validation)
 ├── dev-vault/                # Development Obsidian vault
 ├── assets/                   # Static assets (logo)
 └── .spec/                    # Design docs (this directory)
@@ -47,6 +47,8 @@ obsidian-taskui/
 **Platform:** Obsidian plugin API (`minAppVersion 1.10.0`, desktop-only), Dataview API (mandatory source), Tasks plugin conventions (interop), Ophidian (`@ophidian/core`) for settings persistence.
 
 **Framework & build:** React 18, TypeScript 4.8 (strict), Vite 7, pnpm, Biome (lint/format), Husky + lint-staged.
+
+**Testing:** Vitest (`test` / `test:watch` / `test:coverage`), node environment with mocked Obsidian setup files, run per Node version in CI.
 
 **State & data:** Jotai (atoms, `atomWithStorage`, jotai-effect) for state; Zod for runtime validation; date-fns + chrono-node + `@internationalized/date` for dates.
 
@@ -63,7 +65,8 @@ obsidian-taskui/
 | `Task` | `src/data/types/tasks.ts` (`TaskSchema`) | Every task in state has passed `TaskSchema`; enums are `TaskStatus`, `TaskPriority`, `TaskSource`. |
 | `TaskWithMetadata` | `src/data/types/*` | Store holds `{ task, metadata }`; sync metadata (`needsSync`, `toBeSyncedAction`, `retryCount`, …) never leaks into markdown. |
 | `storeOperation` | task atoms | All mutations go through `updateTaskAtom` with an operation (`LOCAL_ADD/UPDATE/DELETE`, `REMOTE_UPDATE`, `RESET`, `SYNC_CONFIRMED`); no direct atom mutation. |
-| Markdown line | vault files | A task's `rawTaskLine` + `path`/`line` is the source of truth; writes merge fields onto the existing line, preserving unknown attributes. |
+| Markdown line | vault files | A task's `rawTaskLine` + `path`/`line` is the source of truth; writes merge fields onto the existing line, preserving unknown attributes. Two line formats are supported — Dataview inline fields and Tasks emoji syntax — with an existing line's format auto-detected and preserved. |
+| Task line format | `appSettings.defaultTaskFormat` | `"dataview"` (default) or `"emoji"`; applies to newly created tasks. Existing tasks keep their detected format. |
 | View state | `localStorage` via `atomWithStorage` | Sorting/filtering/grouping/pagination/expansion persist locally and are never written to the vault. |
 | Settings | Ophidian (plugin data) ↔ `settingsAtom` | `SettingsService` keeps Ophidian and the Jotai atom in sync; default path/heading drive task creation. |
 

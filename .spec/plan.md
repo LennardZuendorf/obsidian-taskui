@@ -20,15 +20,18 @@ is the current roadmap.
 
 ## Validation Summary
 
-Built and working: plugin shell and view registration; Dataview fetch →
-validated Jotai store → markdown write-back; bidirectional sync with periodic
-remote fetch and bounded retry; Table view with sort/filter/group/pagination;
+Built and working: plugin shell and view registration; fetch → validated Jotai
+store → markdown write-back; bidirectional sync with periodic remote fetch and
+bounded retry; dual task-line format (Dataview inline fields + Tasks emoji,
+auto-detected and preserved); Table view with sort/filter/group/pagination;
 List and Board (Kanban) views; Ophidian-backed settings with an Obsidian
-settings tab; create/edit form via React Hook Form + Zod.
+settings tab; create/edit form via React Hook Form + Zod; a Vitest baseline
+(mapper, builder, dateUtils, validation suites) running in CI per Node version.
 
 Remaining for alpha: List and Board UI polish; create/edit form cleanup and
-robust date editing; verification of settings persistence; initial test
-coverage. See **Spec vs Implementation** for known drift.
+robust date editing; verification of settings persistence; test coverage for the
+view and form layers (data layer is covered). See **Spec vs Implementation** for
+known drift.
 
 ---
 
@@ -58,10 +61,11 @@ views and forms depend on task-sync's store and write path.
 
 | Area | Deliverable | Status | Depends on |
 |---|---|---|---|
-| **task-sync** | Fetch → validated store → write-back + retry/conflict loop | MOSTLY DONE | — |
-| **settings** | Default path/heading persisted (Ophidian) + settings tab | MOSTLY DONE | — |
+| **task-sync** | Fetch → validated store → write-back + retry/conflict loop; dual Dataview/emoji format | MOSTLY DONE | — |
+| **settings** | Default path/heading/format persisted (Ophidian) + settings tab | MOSTLY DONE | — |
 | **task-views** | Table done; List & Board functional, UI polish pending | IN PROGRESS | task-sync |
 | **task-forms** | Modal create/edit + inline editors; cleanup pending | IN PROGRESS | task-sync |
+| **testing** | Vitest runner + data-layer suites + CI done; view/form coverage pending | IN PROGRESS | — |
 
 ---
 
@@ -71,7 +75,7 @@ views and forms depend on task-sync's store and write path.
 |---|---|---|
 | `docs/` consolidated into `.spec/` (2026-06-09) | task-views / task-forms | Old `docs/` prose removed; design lives in `.spec/`, backlog migrated to GitHub Issues. List/Board are implemented (polish pending). |
 | Some filed bugs predate the `views/`+`forms/` rewrite | task-views / task-forms | Tracked in GitHub Issues ("verify edit pre-fill / delete-from-list", "table column controls") — re-check against current code before fixing. |
-| Initial test suite incomplete | all | Test setup and rough unit/integration tests are an alpha exit item. |
+| View/form test coverage missing | task-views / task-forms | Vitest runner + data-layer suites exist (mapper, builder, dateUtils, validation); view and form tests remain ([#29](https://github.com/LennardZuendorf/obsidian-taskui/issues/29)). |
 | `todoistApiKey` setting present but unused | settings | Placeholder for future external sync; not wired. |
 
 ---
@@ -80,6 +84,6 @@ views and forms depend on task-sync's store and write path.
 
 Finish the v0.3 alpha: polish the List and Board view UIs, clean up and harden
 the create/edit form (especially date editing), verify settings persist across
-reloads, and stand up an initial test suite. Next human gate: confirm the alpha
-exit criteria in [product.md](product.md) § Implementation Phases are met before
-tagging v0.3.
+reloads, and extend the Vitest baseline to the view and form layers. Next human
+gate: confirm the alpha exit criteria in [product.md](product.md) §
+Implementation Phases are met before tagging v0.3.

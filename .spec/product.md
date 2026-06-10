@@ -25,7 +25,7 @@ At a project level, TaskUI must:
 
 1. **Surface every vault task in one view.** Aggregate tasks via Dataview and present them in interchangeable Table, List, and Board modes.
 2. **Keep markdown the source of truth.** Every create, edit, and delete writes back to the originating markdown file; the UI never becomes an authoritative second copy.
-3. **Stay interoperable with the Tasks plugin.** Parse and emit task metadata in conventions compatible with Tasks/Dataview (status symbols, inline `[field:: value]` attributes).
+3. **Stay interoperable with the Tasks plugin.** Parse and emit task metadata in both supported conventions — Dataview inline `[field:: value]` attributes and Obsidian Tasks emoji syntax — detecting an existing line's format and preserving it, and using the configured default format for new tasks.
 4. **Synchronize bidirectionally and resiliently.** Reflect external edits to files back into the UI, push UI edits to disk, and recover from transient failures with bounded retries.
 5. **Validate all task data at the boundary.** No task enters application state without passing schema validation.
 6. **Respect the host environment.** Follow the active Obsidian theme, clean up on unload, and require only the dependencies it declares (Dataview mandatory, Tasks recommended).
@@ -78,9 +78,3 @@ through a design phase; until then this map is the high-level inventory.
 - **A second data store.** TaskUI does not maintain an authoritative database independent of the vault's markdown.
 - **External sync (now).** Todoist, cloud, and external-calendar integrations are long-horizon vision, not current scope.
 - **Replacing Dataview or Tasks.** TaskUI builds on them; it does not reimplement task parsing or querying.
-
----
-
-## Open Questions
-
-1. **Non-Dataview write format** — the README notes only the Dataview attribute format is supported today. Is a Tasks-emoji-format write path in scope before v1.0, or permanently downstream of Dataview? Recommendation: stay Dataview-only until the sync engine is stable.
