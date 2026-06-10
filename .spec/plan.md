@@ -69,7 +69,7 @@ views and forms depend on task-sync's store and write path.
 
 | Gap | Area | Notes |
 |---|---|---|
-| `docs/` reconciled against current layout (2026-06-09) | task-views / task-forms | `docs/technical_architecture.md` redirects to `.spec/`; the backlog was migrated to GitHub Issues. List/Board are implemented (polish pending). |
+| `docs/` consolidated into `.spec/` (2026-06-09) | task-views / task-forms | Old `docs/` prose removed; design lives in `.spec/`, backlog migrated to GitHub Issues. List/Board are implemented (polish pending). |
 | Some filed bugs predate the `views/`+`forms/` rewrite | task-views / task-forms | Tracked in GitHub Issues ("verify edit pre-fill / delete-from-list", "table column controls") — re-check against current code before fixing. |
 | Initial test suite incomplete | all | Test setup and rough unit/integration tests are an alpha exit item. |
 | `todoistApiKey` setting present but unused | settings | Placeholder for future external sync; not wired. |
