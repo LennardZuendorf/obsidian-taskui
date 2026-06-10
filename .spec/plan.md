@@ -69,8 +69,8 @@ views and forms depend on task-sync's store and write path.
 
 | Gap | Area | Notes |
 |---|---|---|
-| Docs reference old component names (`DTableViewList/Board`, `FullTaskForm`) | task-views / task-forms | `docs/tasks.md` predates the current `views/` + `forms/` layout; code is truth. List/Board are implemented. |
-| `docs/technical_architecture.md` is partly aspirational | task-sync | Real model uses `TaskWithMetadata`, `TaskSource` = OBSIDIAN/TASKUI, Ophidian settings; reconcile during COMPOUND. |
+| `docs/` reconciled against current layout (2026-06-09) | task-views / task-forms | `docs/technical_architecture.md` now redirects to `.spec/`; `docs/tasks.md` references updated to `views/` + `forms/`. List/Board are implemented (polish pending). |
+| Some filed bugs predate the `views/`+`forms/` rewrite | task-views / task-forms | `docs/tasks.md` § "Needs re-verification" — re-check edit/delete-from-list and table column-control bugs against current code. |
 | Initial test suite incomplete | all | Test setup and rough unit/integration tests are an alpha exit item. |
 | `todoistApiKey` setting present but unused | settings | Placeholder for future external sync; not wired. |
 

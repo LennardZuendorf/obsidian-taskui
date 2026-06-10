@@ -116,4 +116,4 @@ designed. Current high-level map:
 | Polling-based fetch (every ~5s) can race local edits or scale poorly | Sync logic preserves `needsSync` local tasks over remote reads; v0.4 moves to event-based Dataview fetch. |
 | Write-back corrupting a markdown line | Merge fields onto the existing raw line and preserve unknown attributes rather than regenerating from scratch; validate before write. |
 | Sync failure loops | Bounded retry (`retryCount`), `syncFailed` flag after repeated failures, user notification. |
-| Spec/docs drift from code | `docs/technical_architecture.md` is partly aspirational; treat `.spec/tech.md` + code as truth and reconcile in COMPOUND. |
+| Spec/docs drift from code | `docs/technical_architecture.md` now redirects here (canonical); `docs/tasks.md` is the backlog/issue tracker. Keep `.spec/` + code as truth; re-validate after changes. |

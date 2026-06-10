@@ -154,7 +154,8 @@ Contributions are welcome but there's currently no framework, this is tbd.
 
 ## Roadmap
 
-See 
+See [`docs/tasks.md`](docs/tasks.md) for the backlog and known issues, and
+[`.spec/plan.md`](.spec/plan.md) for the current delivery focus.
 
 ## Support
 

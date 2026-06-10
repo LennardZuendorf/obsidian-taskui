@@ -1,6 +1,15 @@
 # Project Tasks & Issues
 
-This document tracks all open tasks, current issues/bugs, and planned refactorings for the project.
+Backlog, open bugs, and planned refactorings for TaskUI.
+
+> **Relationship to `.spec/`:** This is the project's **backlog + issue tracker**.
+> The durable design docs under [`/.spec/`](../.spec/) stay *current-only* (no
+> backlog) by design — long-horizon items and bugs live here instead. For the
+> active delivery focus and feature boundaries, see
+> [`.spec/plan.md`](../.spec/plan.md); for architecture, see
+> [`.spec/tech.md`](../.spec/tech.md). **Code is truth** — statuses below were
+> reconciled against the current `src/` layout on 2026-06-09; re-verify the
+> items still marked open against the code before acting.
 
 ---
 
@@ -8,89 +17,108 @@ This document tracks all open tasks, current issues/bugs, and planned refactorin
 
 ### 1. View Implementations (List & Kanban)
 
-- [ ] **List View UI:** Implement a working and good-looking UI for List View in `DTableViewList.tsx` within the established data flow.
-- [ ] **Kanban View UI:** Implement a working and good-looking UI for Kanban View in `DTableViewBoard.tsx` within the established data flow.
-- [ ] **Core View Architecture:**
-  - [ ] **TO DO:** Refactor `DTable.tsx` into `useTaskTable.ts` hook and centralize core table logic.
-  - [ ] Verify `TaskViewManager.tsx` correctly handles tabs, shared controls, and rendering for List/Kanban views.
-  - [ ] Ensure `DTableViewList.tsx` structure is finalized and ready for detailed UI work.
-  - [ ] Ensure `DTableViewBoard.tsx` structure is finalized and ready for detailed UI work.
-  - [ ] Delete old `DTable.tsx` file once refactor to `useTaskTable.ts` is complete and verified.
+- [x] **List View UI:** Implemented in `src/ui/components/views/ListView.tsx`
+      (collapsible grouped cards). _Polish/visual pass still open._
+- [x] **Kanban View UI:** Implemented in `src/ui/components/views/BoardView.tsx`
+      + `views/board/BoardColumn.tsx` (dnd-kit drag-and-drop). _Polish still open._
+- [ ] **Polish List & Board UIs** to "good-looking" alpha quality.
+- [x] **Core View Architecture:**
+  - [x] Table logic centralized in `src/ui/components/table/DTable.tsx` via the
+        `useDTable()` hook (the planned `useTaskTable.ts` rename was not taken;
+        the hook lives in `DTable.tsx`). Revisit only if it grows unwieldy.
+  - [x] `src/ui/components/TaskView.tsx` handles tabs, shared controls
+        (group/sort/filter + add), and view rendering (replaces the old
+        `TaskViewManager` name).
+  - [x] `ListView.tsx` and `BoardView.tsx` structures finalized for UI work.
 
-### 2. Task Creation & Editing Form (`FullTaskForm.tsx`)
+### 2. Task Creation & Editing Form
 
-- [ ] **Cleanup & Finalize:** Refine and complete the `FullTaskForm.tsx` component.
+- [x] **BUG (resolved):** "Cannot find module './TaskFormSchema'" — the old
+      `src/ui/components/shared/FullTaskForm.tsx` was replaced by
+      `src/ui/components/forms/TaskForm.tsx` with `forms/TaskFormSchema.ts`.
+- [ ] **Cleanup & Finalize `forms/TaskForm.tsx`:**
   - [ ] Improve overall design, layout, and user experience.
-  - [ ] Ensure robust and intuitive date editing functionality.
-- [ ] **BUG:** Fix: "Cannot find module './TaskFormSchema' or its corresponding type declarations." in `src/ui/components/shared/FullTaskForm.tsx`.
+  - [ ] Ensure robust and intuitive date editing (`forms/fields/DatePickerInput.tsx`).
 
 ### 3. Settings
 
-- [ ] **Implement Settings:** Establish working settings functionality and a `SettingsView` within Obsidian.
-  - [ ] Utilize `@ophidian-lib/core` for settings management as planned (see https://github.com/ophidian-lib/core and https://ophidian-lib.github.io/core/_ophidian/core/settings.html).
-  - [ ] Design and implement the UI for `SettingsView`.
+- [x] **Implement Settings:** `src/service/SettingsService.ts` persists settings
+      via `@ophidian/core`; `src/config/settings.ts` provides the Obsidian
+      settings tab (default path + heading), backed by `settingsAtom`.
+- [ ] **Refine Settings UX** and remove the unused `todoistApiKey` placeholder
+      (or defer until external sync is scoped).
 
 ### 4. Initial Testing
 
-- [ ] **Setup Jest:** Configure Jest with `jest-environment-obsidian` (see https://github.com/obsidian-community/jest-environment-obsidian).
-- [ ] **Write Initial Tests:** Develop "rough" unit/integration tests for:
-  - [ ] `DTableViewList.tsx`
-  - [ ] `DTableViewBoard.tsx`
-  - [ ] `FullTaskForm.tsx`
-  - [ ] Core data/state management if feasible.
+- [x] **First test landed:** `tests/data/utils/validateTask.test.ts`.
+- [ ] **Test runner setup:** confirm/standardize the runner (e.g. Jest with
+      `jest-environment-obsidian`) and wire a `test` script.
+- [ ] **Write view/form tests:** `ListView.tsx`, `BoardView.tsx`,
+      `forms/TaskForm.tsx`, and core data/state management.
 
 ### 5. Project Finals & Documentation
 
-- [ ] **Application Logo:** Design and finalize the application logo.
-- [ ] **README.md:** Update/Create a comprehensive `README.md` for the project.
-- [ ] **CONTRIBUTING.md:** Create `CONTRIBUTING.md` with guidelines for contributors.
-- [ ] **GitHub Setup:** Review and finalize GitHub repository setup (e.g., issue templates, labels, project boards if used).
+- [x] **README.md:** present and comprehensive.
+- [x] **Application Logo:** `docs/img/icon.png` in place.
+- [x] **Design docs:** root specs drafted under [`/.spec/`](../.spec/).
+- [ ] **CONTRIBUTING.md:** still missing — create contributor guidelines.
+- [ ] **GitHub Setup:** review issue templates, labels, project boards.
 
 ---
 
 ## 🚀 v0.4 Goals (Post-Alpha)
 
-- [ ] **Overview/Daily View:** Implement a dedicated view for daily tasks or an overview dashboard.
-- [ ] **Calendar View:** Implement full UI and functionality for `DTableViewCalendar.tsx`.
-- [ ] **Enhanced Settings:** Improve and expand upon the v0.3 settings.
-- [ ] **Inline Editing (Views):** Implement inline editing capabilities directly within the List and Kanban views.
-- [ ] **Obsidian Sidebar Integration:** Display current/daily tasks in the Obsidian sidebar.
-- [ ] **Event-Based Fetch Logic:** Refactor data fetching to be event-based using the DataView API for more reactive updates.
-- [ ] **Tag Badges:** Implement display of tag badges in views.
+- [ ] **Overview/Daily View:** dedicated daily-tasks or dashboard view.
+- [ ] **Calendar View:** full UI + functionality (not yet implemented).
+- [ ] **Enhanced Settings:** expand on the v0.3 settings.
+- [ ] **Inline Editing (Views):** edit directly within List and Board views.
+- [ ] **Obsidian Sidebar Integration:** surface current/daily tasks in the sidebar.
+- [ ] **Event-Based Fetch Logic:** replace the periodic (~5s) poll with
+      event-driven DataView updates (see risk in `.spec/tech.md`).
+- [ ] **Tag Badges:** display tag badges in views.
 
 ---
 
 ## 🌌 v1.0+ Goals (Future Vision / Long-Term)
 
-- [ ] **Projects & UI Revamp:** Introduce a concept of "Projects" and undertake a significant UI overhaul, potentially inspired by apps like Todoist.
-- [ ] **Todoist API Sync:** Implement synchronization with the Todoist API.
-- [ ] **Cloud Sync (TaskUI Webapp):** Develop and integrate cloud synchronization with a dedicated TaskUI web application.
-- [ ] **External Calendar Integration:** Allow integration with external calendar services (e.g., Google Calendar, Outlook Calendar).
-- [ ] **Advanced Query Language/Filtering:** Implement a powerful query language or advanced filtering logic, similar to the Obsidian Tasks plugin.
+- [ ] **Projects & UI Revamp:** introduce a "Projects" concept and a larger UI overhaul.
+- [ ] **Todoist API Sync:** synchronize with the Todoist API (the `TaskSource.TASKUI`
+      path and `todoistApiKey` setting are placeholders for this).
+- [ ] **Cloud Sync (TaskUI Webapp):** integrate cloud sync with a dedicated web app.
+- [ ] **External Calendar Integration:** Google/Outlook calendar integration.
+- [ ] **Advanced Query Language/Filtering:** powerful query/filter logic (à la Tasks plugin).
 
 ---
 
 ## 🐛 Known Bugs & Issues
 
-### Critical (Block Release)
+> The components below were rewritten into `views/`, `forms/`, and `task/`
+> since these were filed. References are updated; **re-verify each against the
+> current code** before fixing — some may already be resolved.
 
-- [ ] **Fix:** "Cannot find module './TaskFormSchema' or its corresponding type declarations." in `src/ui/components/shared/FullTaskForm.tsx`.
-- [ ] **Fix Edit Action:** `TaskModal` opens in create mode instead of pre-filling with selected task data when triggered from `ListView`.
-- [ ] **Fix Delete Action:** TypeError (`Cannot read properties of undefined (reading 'description')`) occurs when delete button is clicked in `ListView`, likely due to `task` being undefined in the handler.
+### Needs re-verification
 
-### High Priority
+- [ ] **Edit action:** confirm `forms/TaskModal.tsx` pre-fills with the selected
+      task (not create mode) when triggered from `views/ListView.tsx`.
+- [ ] **Delete action:** confirm no `TypeError` on delete from the list cards
+      (`task/TaskListCard.tsx` / `task/SettingsButton.tsx`) — original report was
+      an undefined `task` in the handler.
 
-- [ ] **Fix Table Grouping:**
-  - [ ] Disable grouping for `description` and `tags` columns.
-  - [ ] Investigate/fix errors when grouping by computed date category columns (`scheduledDateCategory`, `dueDateCategory`).
-- [ ] **Fix Table Sorting:** Disable sorting for computed date category columns (`scheduledDateCategory`, `dueDateCategory`).
-- [ ] **Fix Table Filtering:** Disable filtering for `description` and `tags` columns.
-- [ ] Fix sort dropdown reordering issue.
+### Table behavior
 
-### Low Priority (Code Quality)
+- [ ] **Grouping:** disable grouping for `description` and `tags` columns;
+      verify computed date-category columns (`scheduledDateCategory`,
+      `dueDateCategory`, via `src/ui/lib/config/dateCategory.ts`) group cleanly.
+- [ ] **Sorting:** disable sorting for the computed date-category columns.
+- [ ] **Filtering:** disable filtering for `description` and `tags` columns.
+- [ ] **Sort dropdown:** fix the reordering issue in `table/DTableSortBy.tsx`.
 
-- [ ] Address critical unused variable lint errors (e.g., in `src/data/types/dateCategories.ts`).
-- [ ] Address `any` type assertion warnings (e.g., in `src/ui/components/TaskView.tsx` for the `table` prop passed to view components).
+### Code quality
+
+- [ ] **`any` assertions:** address the `any` on the `table` prop passed to view
+      components from `src/ui/components/TaskView.tsx`. (The old
+      `src/data/types/dateCategories.ts` lint item is obsolete — that file no
+      longer exists; date categories now live in `src/ui/lib/config/`.)
 
 ---
 
@@ -98,31 +126,28 @@ This document tracks all open tasks, current issues/bugs, and planned refactorin
 
 ### Refactoring & Code Quality
 
-- [ ] **Refactor Display Config:** Evaluate and potentially refactor display config logic (`statusDisplayConfig.ts`, `priorityDisplayConfig.ts`, `dateDisplayConfig.ts`) into a shared abstraction (class or factory function) to reduce code duplication.
-- [ ] **UI Component Refactoring (TaskCard Elements):**
-  - [ ] Refactor the existing PrioritySelect to be a reusable, dynamic selector for task priorities.
-  - [ ] Refactor StatusSelect to match the controlled, popover-based, display-config-driven pattern of PrioritySelect.
-  - [ ] Implement a reusable, controlled DescInput component for task description editing.
-  - [ ] Review if `FullTaskForm.tsx` finalization sufficiently covers the needs for these components, or if separate refactoring is still beneficial.
+- [x] **Display config abstraction:** done — `statusDisplayConfig`/`priorityDisplayConfig`/
+      `dateDisplayConfig` were consolidated into `src/ui/lib/config/{status,priority,date,
+      column}.ts` sharing `config/types.ts` + `config/utils.ts` (`getMatchingDisplay`).
+- [x] **Reusable enum selector:** `forms/fields/EnumSelect.tsx` is a controlled,
+      config-driven selector covering both status and priority (replaces the
+      separate `PrioritySelect`/`StatusSelect`).
+- [x] **Description input:** `forms/fields/DescInput.tsx` exists as a controlled component.
+- [ ] **Continue consolidating** any remaining one-off display/selector logic into
+      `ui/lib/config` and `forms/fields`.
 
 ### Testing
 
-- [ ] **Comprehensive Testing:** Significantly expand test coverage across all features (beyond initial v0.3 tests).
+- [ ] **Comprehensive Testing:** expand coverage across views, forms, sync, and
+      data/state beyond the initial validation test.
 
 ---
 
 ## ✅ Recently Completed / Verified
 
-_(Based on user statements - to be formally verified through testing where applicable)_
-
-- [x] **Core Table/View Logic:** Sorting, Filtering, Grouping functionality.
-- [x] **Task Actions:** Editing and Deleting tasks from views.
-- [x] **Various Bug Fixes:** Including `changeTasksState` error, date categorization, sort dropdown, `TaskModal` pre-filling, delete errors, table grouping/sorting/filtering issues.
-
----
-
-## 🔍 Verification Tasks
-
-- [ ] User to verify that the error (changeTasksState) is resolved and tasks load correctly.
-- [ ] Verify the date categorization works correctly in the UI (Grouping/Filtering).
-- [ ] Verify DTable.tsx refactor to useTaskTable.ts is complete before marking as done.
+- [x] Core Table/View logic: sorting, filtering, grouping, pagination.
+- [x] Task actions: editing and deleting tasks from views.
+- [x] List and Board views implemented (UI polish ongoing).
+- [x] Settings via Ophidian + Obsidian settings tab.
+- [x] Display-config and field-component refactors (see Backlog above).
+- [x] Root design docs drafted under `/.spec/`.
