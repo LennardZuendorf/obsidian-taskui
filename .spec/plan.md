@@ -37,7 +37,7 @@ known drift.
 
 ## Feature Boundaries
 
-```
+```text
 task-sync   ── owns ──>  src/api/**, src/data/**, src/service/taskSyncService.ts, taskService.ts
 task-views  ── owns ──>  src/ui/components/views/**, src/ui/components/table/**
 task-forms  ── owns ──>  src/ui/components/forms/**, TaskFormSchema, field editors

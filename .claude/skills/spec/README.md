@@ -25,7 +25,7 @@ The **spec** skill teaches agents to write and maintain design documentation in 
 
 ## The Two-Layer Model
 
-```
+```text
 .spec/
 │
 ├── product.md, tech.md, design.md, plan.md, lessons.md   # ROOT — persistent, high-level
@@ -49,7 +49,7 @@ Canonical rules: [SKILL.md](SKILL.md) § The Two-Layer Model.
 
 ### Bootstrap (strategy)
 
-```
+```text
 product.md → tech.md → design.md → plan.md (feature map, Feature Sequence with binary gates)
 ```
 
@@ -59,7 +59,7 @@ Branch docs (`product-{topic}.md`, `tech-{topic}.md`) only when a concern spans 
 
 Follow [feature.md](feature.md):
 
-```
+```text
 1. Locate & name     — confirm name; read root product/tech + lessons.md
 2. Interview WHAT    — Scope, SHALL/MUST requirements, GWT scenarios → product.md
 3. Rigor gate        — lite vs full (need design.md?)

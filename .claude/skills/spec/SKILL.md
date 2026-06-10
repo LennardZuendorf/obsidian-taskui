@@ -38,7 +38,7 @@ Every project's design lives in `.spec/`. Single source of truth for what you're
 
 Specs come in two layers. Use the right one for the job — mixing them is the most common mistake.
 
-```
+```text
 .spec/
 │
 │  ─── ROOT LAYER (high-level, persistent) ──────────────
@@ -118,7 +118,7 @@ When a feature arc completes (COMPOUND / wrap-up), follow this sequence:
 1. **Promote** — merge cross-cutting blocks from `features/<name>/tech.md` (and product/design when relevant) into root `.spec/{product,tech,design,plan}.md`. Use `<!-- merge -->` markers or hand-merge; see [reference/tech.md](reference/tech.md).
 2. **Record** — append a tagged lesson to `.spec/lessons.md` when a durable rule surfaced (via `vibe-compound`).
 3. **Update root plan** — set the feature to **DONE** in the `.spec/plan.md` Feature Sequence and cleanse delivered detail to a one-line note. Link the **live surface** (skill path, root doc section, test suite) — not the removed feature folder.
-4. **Archive transiently** — `mv features/<name>/ archive/<name>/` as a safety net (e.g. CI fails right after wrapup). Archive is **never** read for active work — CODE IS TRUTH.
+4. **Archive transiently** — `mv features/<name>/ archive/<name>/` as a safety net (e.g. CI fails right after wrap-up). Archive is **never** read for active work — CODE IS TRUTH.
 5. **Prompt to delete** — after validation passes, prompt the user to delete `archive/<name>/`. The folder should be gone **before the branch merges**; keeping it is the justified exception, not the default.
 
 **Why delete and not hoard:** the repo holds value-prop + architecture + current plan only. Decision archaeology that has standalone value can be kept in archive deliberately; otherwise delete — live artifacts (skill bundle, root specs, tests) are the truth.

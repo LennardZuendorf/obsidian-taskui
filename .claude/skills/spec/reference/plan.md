@@ -172,8 +172,9 @@ Template: [templates/feature-plan.md](templates/feature-plan.md)
 **Root plan:**
 ```yaml
 ---
-type: plan
-parent: product.md
+type: entrypoint
+scope: implementation
+covers: feature sequence, build order, validation criteria, open decisions
 children: []   # feature plan paths when registered
 updated: YYYY-MM-DD
 ---

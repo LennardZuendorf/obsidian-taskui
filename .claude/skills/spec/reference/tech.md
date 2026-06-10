@@ -143,4 +143,4 @@ Always link to your product counterpart:
 
 - **Root entrypoint:** [templates/tech.md](templates/tech.md)
 - **Feature spec:** [templates/feature-tech.md](templates/feature-tech.md)
-- **Cross-cutting branch:** [templates/tech-xxx.md](templates/tech-xxx.md)
+- **Cross-cutting branch:** derive from [templates/tech.md](templates/tech.md) — rename `tech-{topic}.md` and set `type: branch`.

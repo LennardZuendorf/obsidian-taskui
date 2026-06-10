@@ -19,7 +19,7 @@ Root-layer files in `.spec/` are **persistent in role, current in content**. The
 
 ## Writing order
 
-```
+```text
 Step 1: product.md     — story / requirements / principles. Stay high-level.
         tech.md        — architecture / stack / basic implementation. Stay high-level.
         design.md      — shared UX/design language. Stay high-level.
@@ -120,6 +120,6 @@ If you started writing something in a feature folder and it clearly applies to *
 - **Tech writing:** [reference/tech.md](reference/tech.md)
 - **Plan writing:** [reference/plan.md](reference/plan.md)
 
-After editing root or branch specs: `bash .agents/skills/spec/scripts/validate.sh` when vendored, or the equivalent global install path — [scripts/validate.sh](scripts/validate.sh).
+After editing root or branch specs: `bash .claude/skills/spec/scripts/validate.sh` when vendored, or the equivalent global install path — [scripts/validate.sh](scripts/validate.sh).
 
 Feature work: [feature.md](feature.md).

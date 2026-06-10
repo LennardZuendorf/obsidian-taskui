@@ -147,4 +147,4 @@ This bridges WHAT to HOW so the reader can navigate.
 
 - **Root entrypoint:** [templates/product.md](templates/product.md)
 - **Feature spec:** [templates/feature-product.md](templates/feature-product.md)
-- **Cross-cutting branch:** [templates/product-xxx.md](templates/product-xxx.md)
+- **Cross-cutting branch:** derive from [templates/product.md](templates/product.md) — rename `product-{topic}.md` and set `type: branch`.

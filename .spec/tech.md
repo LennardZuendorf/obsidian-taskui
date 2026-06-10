@@ -9,6 +9,10 @@ updated: 2026-06-09
 
 TaskUI is a React application embedded in an Obsidian `ItemView`. A thin API layer reads tasks from the Dataview plugin and writes them back through the Obsidian vault file API; a Jotai atom store holds the single validated task model; and a sync service bridges the two, pushing local edits to disk and folding periodic remote fetches back into state. All data crossing the boundary is validated with Zod. Feature-level implementation detail lives under `.spec/features/<name>/`.
 
+**Product:** [product.md](product.md)
+**Design:** [design.md](design.md)
+**Plan:** [plan.md](plan.md)
+
 ---
 
 ## Design Philosophy
@@ -23,7 +27,7 @@ TaskUI is a React application embedded in an Obsidian `ItemView`. A thin API lay
 
 ## Architecture Overview
 
-```
+```text
 obsidian-taskui/
 ├── src/
 │   ├── main.ts               # Plugin entry: registers VIEW_TYPE_MAIN, ribbon, settings tab
