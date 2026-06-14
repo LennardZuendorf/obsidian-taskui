@@ -25,7 +25,7 @@ updated: {YYYY-MM-DD}
 
 ## Files
 
-```
+```text
 {path/to/file.ext}        # {what it does}     ~{N} LOC
 {path/to/other.ext}       # {what it does}     ~{N} LOC
 ```

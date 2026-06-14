@@ -66,7 +66,7 @@ Units are `{name}/n` — the feature slug plus an integer assigned once and **ne
 
 **Files:**
 
-```
+```text
 {path/to/file.ext}        # {what changes}
 {path/to/other.ext}       # {what changes}
 ```
@@ -90,7 +90,7 @@ Units are `{name}/n` — the feature slug plus an integer assigned once and **ne
 
 **Files:**
 
-```
+```text
 {path/to/file.ext}
 ```
 

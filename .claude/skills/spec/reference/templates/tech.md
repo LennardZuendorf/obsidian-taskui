@@ -29,7 +29,7 @@ updated: {YYYY-MM-DD}
 
 ## Architecture Overview
 
-```
+```text
 {project}/
 ├── src/
 │   ├── {directory}/          # {annotation: NEW / inherited / extended}
