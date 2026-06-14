@@ -39,7 +39,7 @@ updated: {YYYY-MM-DD}
 
 {ASCII diagram or table: what each feature owns vs does not own. Prevents scope bleed.}
 
-```
+```text
 {feature-a}  ── owns ──>  {paths / concerns}
 {feature-b}  ── owns ──>  {paths / concerns}
 ```

@@ -110,7 +110,7 @@ Created  →  Consumed  →  Merged  →  Archived  →  Deleted (before merge)
 3. **Consumed during IMPL.** Read feature specs; cite unit IDs in commits and tests; amend with targeted fixes if reality diverges.
 4. **Verified against plan.** Evidence checked per unit verification table — not agent assertions alone.
 5. **Merged during COMPOUND.** Cross-cutting blocks from `features/<name>/tech.md` promote into root `tech.md` (or branch docs). Feature-only detail does not promote.
-6. **Archived then deleted.** Move `.spec/features/<name>/` to `archive/<name>/` at wrapup as a transient safety net. After validation passes, the agent prompts the user to delete the archive — the folder is gone **before the branch merges**. CODE IS TRUTH; archive is never read for active work. See § Archive and delete.
+6. **Archived then deleted.** Move `.spec/features/<name>/` to `archive/<name>/` at wrap-up as a transient safety net. After validation passes, the agent prompts the user to delete the archive — the folder is gone **before the branch merges**. CODE IS TRUTH; archive is never read for active work. See § Archive and delete.
 
 No `/code:feature` workflow? Same lifecycle: create folder when scoping, remove when done.
 
@@ -141,7 +141,7 @@ If everything you wrote applies to **every** future feature, that content belong
 
 ## Archive and delete
 
-After promote, move `.spec/features/<name>/` to `archive/<name>/`. Archive is a **transient safety net** — useful if CI fails right after wrapup and the feature context is briefly needed. It is **never** a store for active work, and never read while building — **CODE IS TRUTH**.
+After promote, move `.spec/features/<name>/` to `archive/<name>/`. Archive is a **transient safety net** — useful if CI fails right after wrap-up and the feature context is briefly needed. It is **never** a store for active work, and never read while building — **CODE IS TRUTH**.
 
 Once validation passes, the agent **prompts the user to delete the archive**, and the folder is gone **before the branch merges**. Keeping an archive past the branch is the exception, not the default; justify it (rejected alternatives, plan archaeology worth standalone history) or delete it.
 

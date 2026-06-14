@@ -62,7 +62,7 @@ Reference requirements as R1, R2, … in the feature plan's Requirements Trace.
 
 {What the user sees and does. Concrete examples. No code, paths, or component names.}
 
-```
+```text
 {Example interaction or output sample}
 ```
 
