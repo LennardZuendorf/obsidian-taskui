@@ -33,6 +33,20 @@ const ANY_EMOJI_REGEX =
 
 const DATAVIEW_FIELD_REGEX = /\[[a-zA-Z0-9_-]+::\s*[^\]]+\]/;
 
+const ANY_EMOJI_REGEX_GLOBAL =
+	/[\u{1F4C5}\u{23F3}\u{1F6EB}\u{2795}\u{2705}\u{274C}\u{1F501}\u{1F194}\u{26D4}\u{1F53A}\u{23EB}\u{1F53C}\u{1F53D}\u{23EC}]/gu;
+
+const DATAVIEW_FIELD_REGEX_GLOBAL = /\[[a-zA-Z0-9_-]+::\s*[^\]]+\]/g;
+
+const DATE_REGEX_BY_EMOJI: Record<string, RegExp> = {
+	[EMOJI.due]: /📅\s*(\d{4}-\d{2}-\d{2})/u,
+	[EMOJI.scheduled]: /⏳\s*(\d{4}-\d{2}-\d{2})/u,
+	[EMOJI.start]: /🛫\s*(\d{4}-\d{2}-\d{2})/u,
+	[EMOJI.created]: /➕\s*(\d{4}-\d{2}-\d{2})/u,
+	[EMOJI.done]: /✅\s*(\d{4}-\d{2}-\d{2})/u,
+	[EMOJI.cancelled]: /❌\s*(\d{4}-\d{2}-\d{2})/u,
+};
+
 export class TaskMapper {
 	/**
 	 * Detects whether a raw task line uses the Obsidian Tasks emoji syntax or
@@ -45,10 +59,8 @@ export class TaskMapper {
 		if (hasE && !hasD) return "emoji";
 		if (hasD && !hasE) return "dataview";
 		if (hasE && hasD) {
-			const eCount = (line.match(new RegExp(ANY_EMOJI_REGEX, "gu")) || [])
-				.length;
-			const dCount = (line.match(/\[[a-zA-Z0-9_-]+::\s*[^\]]+\]/g) || [])
-				.length;
+			const eCount = (line.match(ANY_EMOJI_REGEX_GLOBAL) || []).length;
+			const dCount = (line.match(DATAVIEW_FIELD_REGEX_GLOBAL) || []).length;
 			return eCount > dCount ? "emoji" : "dataview";
 		}
 		return "dataview";
@@ -337,7 +349,10 @@ export class TaskMapper {
 	}
 
 	private extractEmojiDate(line: string, emoji: string): string | null {
-		const m = line.match(new RegExp(`${emoji}\\s*(\\d{4}-\\d{2}-\\d{2})`, "u"));
+		const regex =
+			DATE_REGEX_BY_EMOJI[emoji] ??
+			new RegExp(`${emoji}\\s*(\\d{4}-\\d{2}-\\d{2})`, "u");
+		const m = line.match(regex);
 		return m ? m[1] : null;
 	}
 
