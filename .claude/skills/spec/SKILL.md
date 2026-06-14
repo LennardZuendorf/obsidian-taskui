@@ -10,7 +10,7 @@ description: |
   design doc, tech design, feature spec, or branch doc.
 user-invocable: true
 argument-hint: "[strategy|feature [<name>]|product|tech|design|plan|lessons|setup|validate]"
-allowed-tools: Read, Bash(bash .agents/skills/spec/scripts/validate.sh), Bash(bash .agents/skills/spec/scripts/list-specs.sh), Bash(bash .agents/skills/spec/scripts/setup.sh), Bash(bash ~/.agents/skills/spec/scripts/validate.sh), Bash(bash ~/.agents/skills/spec/scripts/list-specs.sh), Bash(bash ~/.agents/skills/spec/scripts/setup.sh)
+allowed-tools: Read, Bash(bash .claude/skills/spec/scripts/validate.sh), Bash(bash .claude/skills/spec/scripts/list-specs.sh), Bash(bash .claude/skills/spec/scripts/setup.sh), Bash(bash ~/.agents/skills/spec/scripts/validate.sh), Bash(bash ~/.agents/skills/spec/scripts/list-specs.sh), Bash(bash ~/.agents/skills/spec/scripts/setup.sh)
 compatibility: Requires bash. macOS and Linux.
 metadata:
   author: lennarddib
@@ -25,7 +25,7 @@ Every project's design lives in `.spec/`. Single source of truth for what you're
 
 1. **Pick layer** — global/root work → [strategy.md](strategy.md); one named feature → [feature.md](feature.md) + `.spec/features/<name>/`.
 2. **Pick route** — explicit `/spec <arg>` → [Routing § $ARGUMENTS](#routing); no arg → [Routing § Route by task type](#routing).
-3. **Finish** — bump `updated:` on every edited spec; run `bash .agents/skills/spec/scripts/validate.sh` (or global install path).
+3. **Finish** — bump `updated:` on every edited spec; run `bash .claude/skills/spec/scripts/validate.sh` (or global install path).
 
 ## Why Specs Exist
 
@@ -60,7 +60,7 @@ Specs come in two layers. Use the right one for the job — mixing them is the m
 │   ├── plan.md               # optional, feature-scoped roadmap (`<name>/n` units)
 │   └── research.md           # optional, discovery artifacts
 │
-└── archive/<name>/           # transient post-wrapup safety net (deleted before merge)
+└── archive/<name>/           # transient post-wrap-up safety net (deleted before merge)
 ```
 
 **Root layer rules:**
@@ -108,7 +108,7 @@ Full steps, rigor gate, and skip conditions: [feature.md](feature.md).
 3. **One concern per doc.** Product specs contain zero code. Tech specs contain zero UX opinions. Design-system docs may cross the line — they're the only exception.
 4. **Bump `updated:`.** Change the `updated:` date every time you edit a spec.
 5. **Keep cross-references alive.** Link parent ↔ child both ways. List children in entrypoint frontmatter.
-6. **Validate after changes.** Run `bash .agents/skills/spec/scripts/validate.sh` when the skill is vendored, or the equivalent global install path.
+6. **Validate after changes.** Run `bash .claude/skills/spec/scripts/validate.sh` when the skill is vendored, or the equivalent global install path.
 7. **Feature specs are branch-scoped.** Don't write them as if they're permanent. Cross-cutting decisions merge to root; the feature folder is archived transiently then deleted before the branch merges (see below). No backlog in any spec — work-ready items only; long-term ideas live in an external tracker.
 
 ## Wrapped-up features
@@ -192,13 +192,13 @@ sections such as interaction conventions, information hierarchy, and agent tone.
 
 ## Current Project State
 
-!`bash .agents/skills/spec/scripts/list-specs.sh`
+!`bash .claude/skills/spec/scripts/list-specs.sh`
 
 ## Setup, Templates, Validation
 
 ### Setup
 
-`/spec setup` or `bash .agents/skills/spec/scripts/setup.sh` from a repo that vendors this skill — initializes `.spec/` with entrypoint templates and an empty `lessons.md`. If the skill is installed globally, `bash ~/.agents/skills/spec/scripts/setup.sh` is also valid. Does not create features (those are born when you scope a feature).
+`/spec setup` or `bash .claude/skills/spec/scripts/setup.sh` from a repo that vendors this skill — initializes `.spec/` with entrypoint templates and an empty `lessons.md`. If the skill is installed globally, `bash ~/.agents/skills/spec/scripts/setup.sh` is also valid. Does not create features (those are born when you scope a feature).
 
 ### Templates
 
@@ -226,4 +226,4 @@ Paths are under [reference/templates/](reference/templates/) (copy into your pro
 
 ### Validation
 
-`bash .agents/skills/spec/scripts/validate.sh` when the skill is vendored in the repo, or `bash ~/.agents/skills/spec/scripts/validate.sh` when installed globally — checks frontmatter, naming, internal links, orphaned children, and feature-folder consistency under `.spec/`.
+`bash .claude/skills/spec/scripts/validate.sh` when the skill is vendored in the repo, or `bash ~/.agents/skills/spec/scripts/validate.sh` when installed globally — checks frontmatter, naming, internal links, orphaned children, and feature-folder consistency under `.spec/`.

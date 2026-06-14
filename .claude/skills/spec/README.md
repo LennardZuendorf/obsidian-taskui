@@ -38,7 +38,7 @@ The **spec** skill teaches agents to write and maintain design documentation in 
 │   ├── design.md           # optional — UI/UX when needed
 │   └── research.md         # optional
 │
-└── archive/<name>/         # transient post-wrapup safety net (deleted before merge)
+└── archive/<name>/         # transient post-wrap-up safety net (deleted before merge)
 ```
 
 **Root** answers project-level questions. **Feature** answers one closed, deliverable, testable box. Feature specs are written during design, consumed during implementation, merged when cross-cutting, archived transiently, then deleted before the branch merges (CODE IS TRUTH).
@@ -119,7 +119,7 @@ Discuss → decide → update the relevant spec → bump `updated:` → `/spec v
 ## Validation
 
 ```bash
-bash .agents/skills/spec/scripts/validate.sh   # vendored
+bash .claude/skills/spec/scripts/validate.sh   # vendored
 bash ~/.agents/skills/spec/scripts/validate.sh # global install
 ```
 
