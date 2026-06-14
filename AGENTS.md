@@ -118,9 +118,8 @@ pnpm check             # Biome lint + format
 
 /build/               # Build output (gitignored)
 /dev-vault/           # Development Obsidian vault
-/docs/                # Documentation
-  technical_architecture.md
-  tasks.md
+/assets/              # Static assets (logo)
+/.spec/               # Design docs (product, tech, design, plan, lessons)
 ```
 
 ### Obsidian Plugin Integration
