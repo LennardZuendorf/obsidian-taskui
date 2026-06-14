@@ -309,7 +309,7 @@ echo "Validating $SPEC_DIR/..."
 echo ""
 
 if [[ ! -d "$SPEC_DIR" ]]; then
-  red "No .spec/ directory found. Run setup first: bash .agents/skills/spec/scripts/setup.sh"
+  red "No .spec/ directory found. Run setup first: bash .claude/skills/spec/scripts/setup.sh"
   exit 1
 fi
 

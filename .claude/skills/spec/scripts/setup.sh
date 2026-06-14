@@ -1,8 +1,8 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Initialize a .spec/ directory in the current project
 # Copies templates as starting points for product, tech, design, and plan entrypoints
 
-set -e
+set -euo pipefail
 
 SPEC_DIR=".spec"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -119,5 +119,5 @@ echo "    Root entrypoints:        $TEMPLATE_DIR/{product,tech,design,plan}.md"
 echo "    Feature specs:           $TEMPLATE_DIR/feature-{product,tech}.md plus optional design.md"
 echo "    Cross-cutting branches:  derive from root templates and rename product-/tech-/plan-<topic>.md"
 echo ""
-echo "  Validate anytime: bash .agents/skills/spec/scripts/validate.sh"
+echo "  Validate anytime: bash .claude/skills/spec/scripts/validate.sh"
 echo ""
