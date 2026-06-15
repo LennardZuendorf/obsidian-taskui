@@ -40,8 +40,8 @@ Locked versions verified by `grep pnpm-lock.yaml` + `pnpm why` on this branch.
 | Package | Locked | Patched | Sev | Vector | Notes |
 |---|---|---|---|---|---|
 | **vitest** | 2.1.9 | 3.2.6 | critical | A: bump (or D: dismiss) | RCE needs `@vitest/ui`; repo uses `vitest run` — not triggerable. Bump also drops the `vite@5.4.21`/`esbuild@0.21.5` subtree. |
-| **vite** (direct) | 7.2.7 | 7.3.2 | high×2, med | A: bump | WS file read, `server.fs.deny` bypass, path traversal. Dev-server only. |
-| **postcss** (direct devDep) | 8.4.47 | 8.5.10 | med | A: bump | XSS in stringify. PR #42 only bumped the *transitive* copy, not this one. |
+| **vite** (direct) | 7.2.7 | 7.3.5 | high×2, med | A: bump | WS file read, `server.fs.deny` bypass, path traversal. Dev-server only. |
+| **postcss** (direct devDep) | 8.4.47 | 8.5.15 | med | A: bump | XSS in stringify. PR #42 only bumped the *transitive* copy, not this one. |
 | **uuid** (direct) | 11.1.0 | 11.1.1 | med | A: bump to **11.1.1** | Buffer-bounds. `^11.1.0` already permits 11.1.1 → lockfile bump only. **Reject PR #42's jump to 14** (needless ESM-only major). |
 | **immutable** | 4.3.7 | 4.3.8 | high | B: remove parent | Prototype pollution. Via `jotai-devtools` → `@redux-devtools/extension`. **`jotai-devtools` unused** → remove it. |
 | **jsondiffpatch** | 0.5.0 | 0.7.2 | med | B: remove parent | XSS. Via `jotai-devtools`. Removed with it. |
