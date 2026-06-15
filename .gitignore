@@ -11,3 +11,6 @@ node_modules
 # obsidian vault & build file
 /dev-vault/
 /build/taskui-dev
+
+# test coverage output
+/coverage/
