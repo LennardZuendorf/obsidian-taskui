@@ -3,7 +3,7 @@ type: entrypoint
 scope: implementation
 covers: feature sequence, build order, validation criteria, open decisions
 children: []
-updated: 2026-06-09
+updated: 2026-06-14
 ---
 
 # TaskUI — Implementation Plan
@@ -66,6 +66,7 @@ views and forms depend on task-sync's store and write path.
 | **task-views** | Table done; List & Board functional, UI polish pending | IN PROGRESS | task-sync |
 | **task-forms** | Modal create/edit + inline editors; cleanup pending | IN PROGRESS | task-sync |
 | **testing** | Vitest runner + data-layer suites + CI done; view/form coverage pending | IN PROGRESS | — |
+| **[dependabot-security](features/dependabot-security/plan.md)** | Clear open Dependabot alerts via bump/remove/override/dismiss; no React/Tailwind major | IMPL (units 1–3 done; svelte/esbuild dismissals + smoke pending) | — |
 
 ---
 
